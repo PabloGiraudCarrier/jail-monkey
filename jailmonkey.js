@@ -3,10 +3,10 @@ import { NativeModules } from "react-native";
 const { JailMonkey } = NativeModules;
 
 export default {
-  isJailBroken: () => JailMonkey.isJailBroken,
+  isSmellingShit: () => JailMonkey.isSmellingShit,
   hookDetected: () => JailMonkey.hookDetected,
   canMockLocation: () => JailMonkey.canMockLocation,
-  trustFall: () => JailMonkey.isJailBroken || JailMonkey.canMockLocation,
+  trustFall: () => JailMonkey.isSmellingShit || JailMonkey.canMockLocation,
   isOnExternalStorage: () => JailMonkey.isOnExternalStorage,
   isDebuggedMode: function() {
     return JailMonkey.isDebuggedMode();

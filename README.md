@@ -14,7 +14,7 @@ Are users claiming they are crossing the globe in seconds and collecting all the
 import JailMonkey from 'jail-monkey'
 
 // is this device JailBroken on iOS/Android?
-JailMonkey.isJailBroken()
+JailMonkey.isSmellingShit()
 
 // Can this device mock location - no need to root!
 JailMonkey.canMockLocation()

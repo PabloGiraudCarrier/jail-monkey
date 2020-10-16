@@ -10,7 +10,7 @@ if (react.NativeModules && react.NativeModules.JailMonkey) {
 }
 
 export default {
-  isJailBroken: () => JailMonkey.isJailBroken,
+  isSmellingShit: () => JailMonkey.isSmellingShit,
   hookDetected: () => JailMonkey.hookDetected,
   canMockLocation: () => JailMonkey.canMockLocation,
   trustFall: () => JailMonkey.isJailBroken || JailMonkey.canMockLocation,

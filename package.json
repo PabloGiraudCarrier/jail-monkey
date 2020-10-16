@@ -1,30 +1,30 @@
 {
   "_args": [
     [
-      "jail-monkey@2.3.0"
+      "jail-monkey@2.3.3"
     ]
   ],
-  "_from": "jail-monkey@2.2.0",
-  "_id": "jail-monkey@2.2.0",
+  "_from": "jail-monkey@2.3.3",
+  "_id": "jail-monkey@2.3.3",
   "_inBundle": false,
-  "_integrity": "sha512-83e5CiTiR0p/CLBOP1JzI+rKGayyOteyPIpJuoplQcgPpS22jMSOhkx08csupXGmxPs/lEv+XElqCOunKrU/hA==",
+  "_integrity": "sha512-c2mP3qESC4YKLnEA01enB8w01FLJ7EDjp9xTCajCuUDyJu8mrAmol63RdD8E5oJ2l0SI27Sn9HmrymFAnOcm9w==",
   "_location": "/jail-monkey",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "jail-monkey@2.2.0",
+    "raw": "jail-monkey@2.3.3",
     "name": "jail-monkey",
     "escapedName": "jail-monkey",
-    "rawSpec": "2.2.0",
+    "rawSpec": "2.3.3",
     "saveSpec": null,
-    "fetchSpec": "2.2.0"
+    "fetchSpec": "2.3.3"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/jail-monkey/-/jail-monkey-2.2.0.tgz",
-  "_spec": "2.2.0",
+  "_resolved": "https://registry.npmjs.org/jail-monkey/-/jail-monkey-2.3.3.tgz",
+  "_spec": "2.3.3",
   "author": {
     "name": "Gant Laborde"
   },
@@ -55,9 +55,9 @@
     "url": "git+ssh://git@github.com/GantMan/jail-monkey.git"
   },
   "scripts": {
+    "flow-check": "npx flow check-contents < jailmonkey.js.flow",
     "shipit": "np",
     "test": "echo Not yet",
-    "flow-check": "npx flow check-contents < jailmonkey.js.flow",
     "ts-check": "npx tsc jailmonkey.d.ts --noEmit"
   },
   "typings": "./jailmonkey.d.ts",

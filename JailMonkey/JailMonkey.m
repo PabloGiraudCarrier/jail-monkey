@@ -11,8 +11,8 @@
 @import UIKit;
 @import Darwin.sys.sysctl;
 
-static NSString * const JMJailbreakTextFile = @"/private/jailbreak.txt";
-static NSString * const JMisJailBronkenKey = @"isJailBroken";
+static NSString * const JMShittyTextFile = @"/private/shit.txt";
+static NSString * const JMisSmellingShitKey = @"isSmellingShit";
 static NSString * const JMisDebuggedKey = @"isDebuggedMode";
 static NSString * const JMCanMockLocationKey = @"canMockLocation";
 
@@ -72,46 +72,57 @@ RCT_EXPORT_MODULE();
              ];
 }
 
-- (BOOL)checkPaths
+- (NSString *)checkPaths
 {
     BOOL existsPath = NO;
+    NSString *detectedPath = @"";
 
     for (NSString *path in [self pathsToCheck]) {
         if ([[NSFileManager defaultManager] fileExistsAtPath:path]){
             existsPath = YES;
+            if ([detectedPath length] == 0){
+                detectedPath = path;
+            } else {
+                detectedPath = [NSString stringWithFormat:@"%@ | %@", detectedPath, path];
+            }
             break;
         }
     }
 
-    return existsPath;
+    return detectedPath;
 }
 
-- (BOOL)checkSchemes
+- (NSString *)checkSchemes
 {
     BOOL canOpenScheme = NO;
+    NSString *detectedScheme = @"";
 
     for (NSString *scheme in [self schemesToCheck]) {
         if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:scheme]]){
             canOpenScheme = YES;
+            if ([detectedScheme length] == 0){
+                detectedScheme = scheme;
+            } else {
+                detectedScheme = [NSString stringWithFormat:@"%@ | %@", detectedScheme, scheme];
+            }
             break;
         }
     }
 
-    return canOpenScheme;
+    return detectedScheme;
 }
 
 - (BOOL)canViolateSandbox{
 	NSError *error;
     BOOL grantsToWrite = NO;
 	NSString *stringToBeWritten = @"This is an anti-spoofing test.";
-	[stringToBeWritten writeToFile:JMJailbreakTextFile atomically:YES
+	[stringToBeWritten writeToFile:JMShittyTextFile atomically:YES
 						  encoding:NSUTF8StringEncoding error:&error];
 	if(!error){
-		//Device is jailbroken
 		grantsToWrite = YES;
 	}
 
-    [[NSFileManager defaultManager] removeItemAtPath:JMJailbreakTextFile error:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:JMShittyTextFile error:nil];
 
     return grantsToWrite;
 }
@@ -138,20 +149,32 @@ RCT_EXPORT_MODULE();
     return false;
 }
 
-- (BOOL)isJailBroken{
+- (NSDictionary *)isSmellingShit{
     #if TARGET_OS_SIMULATOR
-      return NO;
+      return @{
+        @"result": @NO,
+      };
     #endif
-    return [self checkPaths] || [self checkSchemes] || [self canViolateSandbox];
+
+    NSString *resultPaths = [self checkPaths];
+    NSString *resultSchemes = [self checkSchemes];
+    BOOL resultCanViolateSandbox = [self canViolateSandbox];
+
+    return @{
+        @"result": @([resultPaths length] != 0 || [resultSchemes length] != 0 || resultCanViolateSandbox),
+        @"detectedPaths": resultPaths,
+        @"detectedSchemes": resultSchemes,
+        @"canViolateSandbox": @(resultCanViolateSandbox),
+    };
 }
 
 - (NSDictionary *)constantsToExport
 {
 	return @{
-			 JMisJailBronkenKey: @(self.isJailBroken),
-			 JMisDebuggedKey: @(self.isDebugged),
-			 JMCanMockLocationKey: @(self.isJailBroken)
-			 };
+        JMisSmellingShitKey: self.isSmellingShit,
+        JMisDebuggedKey: @(self.isDebugged),
+        JMCanMockLocationKey: self.isSmellingShit
+    };
 }
 
 @end

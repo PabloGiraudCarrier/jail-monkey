@@ -2,7 +2,7 @@
 // import JailMonkey from 'jail-monkey';
 
 declare const _default: {
-  isJailBroken: () => boolean;
+  isSmellingShit: () => object;
   isDebuggedMode: () => Promise<boolean>;
   canMockLocation: () => boolean;
   trustFall: () => boolean;

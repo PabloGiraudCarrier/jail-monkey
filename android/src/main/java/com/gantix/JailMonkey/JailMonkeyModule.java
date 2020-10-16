@@ -21,7 +21,7 @@ import static com.gantix.JailMonkey.AdbEnabled.AdbEnabled.AdbEnabled;
 import static com.gantix.JailMonkey.ExternalStorage.ExternalStorageCheck.isOnExternalStorage;
 import static com.gantix.JailMonkey.HookDetection.HookDetectionCheck.hookDetected;
 import static com.gantix.JailMonkey.MockLocation.MockLocationCheck.isMockLocationOn;
-import static com.gantix.JailMonkey.Rooted.RootedCheck.isJailBroken;
+import static com.gantix.JailMonkey.Rooted.RootedCheck.isSmellingShit;
 
 
 public class JailMonkeyModule extends ReactContextBaseJavaModule {
@@ -71,7 +71,7 @@ public class JailMonkeyModule extends ReactContextBaseJavaModule {
     Map<String, Object> getConstants() {
         ReactContext context = getReactApplicationContext();
         final Map<String, Object> constants = new HashMap<>();
-        constants.put("isJailBroken", isJailBroken(context));
+        constants.put("isSmellingShit", isSmellingShit(context));
         constants.put("hookDetected", hookDetected(context));
         constants.put("canMockLocation", isMockLocationOn(context));
         constants.put("isOnExternalStorage", isOnExternalStorage(context));
